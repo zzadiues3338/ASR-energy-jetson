@@ -14,9 +14,11 @@ remaining models were run natively on the jetson using command line interface.
 1. Change the MODEL_NAME="base" to your choice. Currently, options are base, tiny, small and medium. You need to give additional keywords
 for specifying the quantization type. Follow the syntax given in https://github.com/m-bain/whisperX for more details.
    
-2. Modify the ts.sh file as follows (ts.sh is the bash script which runs the docker container for running whisperx models)
+2. A.Modify the ts.sh file as follows (ts.sh is the bash script which runs the docker container for running whisperx models)
 In the ts.sh file adjust the input and output directory containing audio files and the predicted text files  
 The line is "FULL_OUTPUT=$(jetson-containers run -d -v /home/chakz/Desktop/dev-clean-2/3752/4944:/app/audio -v /home/chakz/Desktop/outputs:/app/outputs $IMAGE_TAG)"
+
+B. Appropriately change the reference and predicted text paths in the ```Wer_calculation_from_output.py```(for WER calculation) and appropriately change the baseline power, GPU utilization and memory values in the ```process_power_report_jp51.py```(post procesing to get final energy consumption). 
 
 Once the input and output paths are correctly configured,  go
 ```
@@ -39,3 +41,4 @@ which would run all the 4 models for all three quantization types. To do that, s
 
 **Steps to run speech transcription using HF models directly your own jetson device (i.e., no jetson-container)**:
 
+This ones a lot easier, simply use the python scripts (e.g., ```hf_asr_hubert.py```, or ```hf_asr_wavLM.py```, etc.). You just need to adjust the audio input directory in the python script. You can change the model and process kwargs in the script to adapt this to any suitable HF model of your choice.  
