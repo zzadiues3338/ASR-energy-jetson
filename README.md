@@ -2,11 +2,18 @@ This is the repository to reproduce the results in the Arxiv article
 https://arxiv.org/abs/2405.01004
 **Deep Learning Models in Speech Recognition: Measuring GPU Energy Consumption, Impact of Noise and Model Quantization for Edge Deployment**
 This timely article explores the performance of automatic speech recognition models' performance when deployed on an edge GPU (Jetson orin nano) 
-when there is noise in the audio, and impact of quantization (fp32, fp16, in8). 
+when there is noise in the audio, and impact of quantization (fp32, fp16, in8) on energy consumption, transcription speeds, and RAM usage. 
 
-![Alt text](images/2.png "Impact of noisy audio on word error rate")
 
+![Alt text](images/2.png "Impact of quantization on energy consumption")
+![Alt text](images/3.png "Impact of noisy audio on word error rate")
+
+![Alt text](images/4.png "Impact of quantization on transcription rate and RAM usage")
 Experiments are done on a Jetson Orin Nano 8 GB developer kit running JetPack 5.1.2. (LT35.4.1) 
+
+![Alt text](images/1.png "Jetson Orin Nano in a metal case, connected to keyboard, mouse and monitor")
+
+![Alt text](images/5.png "Holistic performance overview of edge deployed ASR models")
 
 **Steps to run speech transcription using the whisperx models on your own jetson device**: 
 
