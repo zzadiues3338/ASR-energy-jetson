@@ -20,6 +20,10 @@ Once the input and output paths are correctly configured,  write
 
 ```
 chmod +x ts.sh
+```
+to add permissions, this needs to be done just once. Thats it. Now simply type 
+
+```
 ./ts.sh
 ```
 
@@ -29,6 +33,8 @@ The completed run will produce a output csv file which will then be parsed by an
 
 3. Final results would be appended in a txt file 'process log'. Each runs details are appended in the process log.
 
-4. Alternatively, you could use run_experiments.sh which would run all the 4 models for all three quantization types. To do that, specify the audio input directory
+4. Alternatively, you could use
+```run_experiments.sh ```
+which would run all the 4 models for all three quantization types. To do that, specify the audio input directory
    in the run_single_experiment.sh script.
 
