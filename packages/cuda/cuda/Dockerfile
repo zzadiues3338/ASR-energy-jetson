@@ -1,0 +1,58 @@
+#---
+# name: cuda
+# group: cuda
+# config: config.py
+# depends: [build-essential]
+# test: test.sh
+#---
+ARG BASE_IMAGE
+FROM ${BASE_IMAGE}
+
+ARG CUDA_URL \
+    CUDA_DEB \
+    CUDA_PACKAGES \
+    CUDA_ARCH_LIST \
+    PIP_INDEX_REPO \
+    PIP_UPLOAD_REPO \
+    PIP_UPLOAD_USER \
+    PIP_UPLOAD_PASS \
+    PIP_TRUSTED_HOSTS \
+    TAR_INDEX_URL \
+    SCP_UPLOAD_URL \
+    SCP_UPLOAD_USER \
+    SCP_UPLOAD_PASS \
+    DISTRO="ubuntu2004"
+    
+COPY install.sh /tmp/install_cuda.sh
+RUN /tmp/install_cuda.sh
+
+ENV CUDA_HOME="/usr/local/cuda"
+ENV NVCC_PATH="$CUDA_HOME/bin/nvcc"
+
+ENV NVIDIA_VISIBLE_DEVICES=all \
+    NVIDIA_DRIVER_CAPABILITIES=all \
+    CUDAARCHS=${CUDA_ARCH_LIST} \
+    CUDA_ARCHITECTURES=${CUDA_ARCH_LIST} \
+    CUDA_HOME="/usr/local/cuda" \
+    CUDNN_LIB_PATH="/usr/lib/aarch64-linux-gnu" \
+    CUDNN_LIB_INCLUDE_PATH="/usr/include" \
+    CMAKE_CUDA_COMPILER=${NVCC_PATH} \
+    CUDA_NVCC_EXECUTABLE=${NVCC_PATH} \
+    CUDACXX=${NVCC_PATH} \
+    TORCH_NVCC_FLAGS="-Xfatbin -compress-all" \
+    CUDA_BIN_PATH="${CUDA_HOME}/bin" \
+    CUDA_TOOLKIT_ROOT_DIR="${CUDA_HOME}" \
+    PATH="$CUDA_HOME/bin:${PATH}" \
+    LD_LIBRARY_PATH="${CUDA_HOME}/compat:${CUDA_HOME}/lib64:${LD_LIBRARY_PATH}" \
+    TAR_INDEX_URL=${TAR_INDEX_URL} \
+    PIP_INDEX_URL=${PIP_INDEX_REPO} \
+    PIP_TRUSTED_HOST=${PIP_TRUSTED_HOSTS} \
+    TWINE_REPOSITORY_URL=${PIP_UPLOAD_REPO} \
+    TWINE_USERNAME=${PIP_UPLOAD_USER} \
+    TWINE_PASSWORD=${PIP_UPLOAD_PASS} \
+    SCP_UPLOAD_URL=${SCP_UPLOAD_URL} \
+    SCP_UPLOAD_USER=${SCP_UPLOAD_USER} \
+    SCP_UPLOAD_PASS=${SCP_UPLOAD_PASS} \
+    DEBIAN_FRONTEND=noninteractive
+    
+WORKDIR /
