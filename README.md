@@ -4,6 +4,8 @@ https://arxiv.org/abs/2405.01004
 This timely article explores the performance of automatic speech recognition models' performance when deployed on an edge GPU (Jetson orin nano) 
 when there is noise in the audio, and impact of quantization (fp32, fp16, in8). 
 
+![Alt text](images/2.png "Impact of noisy audio on word error rate")
+
 Experiments are done on a Jetson Orin Nano 8 GB developer kit running JetPack 5.1.2. (LT35.4.1) 
 
 **Steps to run speech transcription using the whisperx models on your own jetson device**: 
