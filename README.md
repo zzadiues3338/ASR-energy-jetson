@@ -16,8 +16,9 @@ for specifying the quantization type. Follow the syntax given in https://github.
 In the ts.sh file adjust the input and output directory containing audio files and the predicted text files  
 The line is "FULL_OUTPUT=$(jetson-containers run -d -v /home/chakz/Desktop/dev-clean-2/3752/4944:/app/audio -v /home/chakz/Desktop/outputs:/app/outputs $IMAGE_TAG)"
 
-Once the input and output paths are correctly configured, use 
-```bash
+Once the input and output paths are correctly configured,  
+
+```
 chmod +x ts.sh
 ./ts.sh
 '''
