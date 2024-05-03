@@ -16,6 +16,12 @@ for specifying the quantization type. Follow the syntax given in https://github.
 In the ts.sh file adjust the input and output directory containing audio files and the predicted text files  
 The line is "FULL_OUTPUT=$(jetson-containers run -d -v /home/chakz/Desktop/dev-clean-2/3752/4944:/app/audio -v /home/chakz/Desktop/outputs:/app/outputs $IMAGE_TAG)"
 
+Once the input and output paths are correctly configured, use th```bash
+chmod +x ts.sh
+./ts.sh
+
+Note that the chmod process needs to be done just once.
+
 The completed run will produce a output csv file which will then be parsed by another Python script to finally calculate the energy consumption and other stats. 
 
 3. Final results would be appended in a txt file 'process log'. Each runs details are appended in the process log.
